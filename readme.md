@@ -19,6 +19,9 @@ Medical Expenditure Panel Survey (MEPS) 2020 data.
 | Hypertension | Logistic Regression | 0.839 | 0.715 | Age, BMI, Comorbidity |
 | Heart Disease | Logistic Regression | 0.830 | 0.442 | Age, Hypertension, Smoking |
 
+
+deployment link: https://patient-risk-analysis-rgz4xe5rftbqezgdwakxn7.streamlit.app/
+
 ## Run
 ```bash
 pip install -r requirements.txt
