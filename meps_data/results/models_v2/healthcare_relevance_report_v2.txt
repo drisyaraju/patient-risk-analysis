@@ -1,0 +1,69 @@
+======================================================================
+HEALTHCARE RELEVANCE REPORT v2 — Improved Models (MEPS 2020)
+======================================================================
+
+IMPROVEMENTS MADE:
+--------------------------------------------------
+
+1. Removed ID column (data leakage)
+2. Added 7 new clinically engineered features (BMI×Age, Poly_Risk, etc.)
+3. SMOTE oversampling for class imbalance
+4. RandomizedSearchCV hyperparameter tuning
+5. Threshold tuning for optimal Precision-Recall tradeoff
+6. Stacking ensemble of top models
+7. Feature selection (top 18 features)
+
+
+2. MODEL PERFORMANCE SUMMARY
+--------------------------------------------------
+
+--- DIABETES ---
+                Model  Accuracy  Precision   Recall  F1-Score  ROC-AUC
+  Logistic Regression  0.839611   0.369524 0.629870  0.465786 0.859042
+Random Forest (Tuned)  0.817445   0.321973 0.582792  0.414789 0.831839
+      XGBoost (Tuned)  0.843395   0.332893 0.409091  0.367079 0.818360
+    Stacking Ensemble  0.830240   0.322052 0.478896  0.385117 0.770535
+
+Best Model: Logistic Regression
+Optimal Threshold: 0.682
+  ROC-AUC: 0.859
+  Recall:  0.630
+  Precision: 0.370
+
+--- HYPERTENSION ---
+                Model  Accuracy  Precision   Recall  F1-Score  ROC-AUC
+  Logistic Regression  0.755769   0.630986 0.826060  0.715464 0.839013
+Random Forest (Tuned)  0.756911   0.651100 0.745544  0.695129 0.826158
+      XGBoost (Tuned)  0.755083   0.640222 0.778734  0.702718 0.829335
+    Stacking Ensemble  0.761937   0.656668 0.753534  0.701774 0.831591
+
+Best Model: Logistic Regression
+Optimal Threshold: 0.461
+  ROC-AUC: 0.839
+  Recall:  0.826
+  Precision: 0.631
+
+--- HEART_DISEASE ---
+                Model  Accuracy  Precision   Recall  F1-Score  ROC-AUC
+  Logistic Regression  0.820776   0.336216 0.645228  0.442075 0.830357
+Random Forest (Tuned)  0.834018   0.333333 0.508299  0.402629 0.772811
+      XGBoost (Tuned)  0.830594   0.307692 0.431535  0.359240 0.766320
+    Stacking Ensemble  0.839954   0.321370 0.408714  0.359817 0.735166
+
+Best Model: Logistic Regression
+Optimal Threshold: 0.650
+  ROC-AUC: 0.830
+  Recall:  0.645
+  Precision: 0.336
+
+
+3. CLINICAL ACTIONABILITY
+--------------------------------------------------
+
+* Use TUNED THRESHOLD for deployment (not 0.5)
+* High-risk patients (top decile predicted probability):
+  -> Immediate lifestyle intervention + specialist referral
+* Moderate-risk patients:
+  -> Annual screening + primary care monitoring
+* Threshold can be adjusted based on cost of false positives vs false negatives
+

@@ -491,6 +491,13 @@ def train_and_evaluate(target):
     for k in ['Precision', 'Recall', 'F1-Score']:
         print(f"    {k}: {default_metrics[k]:.3f} -> {tuned_metrics[k]:.3f}")
 
+        # After computing tuned_metrics, update the best model's row:
+    for i, row in results_df.iterrows():
+        if row['Model'] == best_name:
+            for k in ['Accuracy', 'Precision', 'Recall', 'F1-Score']:
+                results_df.at[i, k] = tuned_metrics[k]
+
+
     # Save artifacts
     artifact_path = os.path.join(OUTPUT_DIR, f'{target.lower()}_best_model.pkl')
     with open(artifact_path, 'wb') as f:
@@ -663,11 +670,6 @@ def generate_report(all_results, best_models, thresholds):
 
     print(f"\nReport saved: {report_path}")
 
-# After computing tuned_metrics, update the best model's row:
-for i, row in results_df.iterrows():
-    if row['Model'] == best_name:
-        for k in ['Accuracy', 'Precision', 'Recall', 'F1-Score']:
-            results_df.at[i, k] = tuned_metrics[k]
 
 
 # ============================================
