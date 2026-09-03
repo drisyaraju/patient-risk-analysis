@@ -1,0 +1,56 @@
+
+FEATURE ENGINEERING DOCUMENTATION
+=================================
+
+ORIGINAL FEATURES (7):
+- Age: Patient age in years
+- Gender: Male/Female
+- Race: White/Black/Hispanic/Asian/Other
+- Family_Income: Annual family income
+- Insurance_Coverage: Private/Public/Uninsured
+- Self_Reported_Health: Excellent/Very Good/Good/Fair/Poor
+- Mental_Health_Status: Excellent/Very Good/Good/Fair/Poor
+
+ENGINEERED FEATURES (10):
+
+1. Age_Group (Categorical)
+   - Bins: Young(0-40), Middle(40-60), Older(60-75), Senior(75+)
+   - Rationale: Non-linear age-risk relationship
+
+2. BMI_Category (Categorical)
+   - Bins: Underweight(<18.5), Normal(18.5-25), Overweight(25-30), Obese(30+)
+   - Rationale: Clinical thresholds for metabolic risk
+
+3. Income_Quartile (Categorical)
+   - Bins: Q1-Q4 based on distribution
+   - Rationale: Relative poverty vs absolute income
+
+4. Age_x_Income (Numerical)
+   - Formula: Age * Family_Income
+   - Rationale: Captures old+poor interaction (highest risk)
+
+5. Health_Risk_Score (Numerical)
+   - Formula: Average of encoded Self_Reported_Health + Mental_Health_Status
+   - Rationale: Composite wellness indicator
+
+6. Comorbidity_Count (Numerical)
+   - Formula: Sum of other disease targets
+   - Rationale: Disease clustering from EDA
+
+7. Risk_Category (Categorical)
+   - Bins: Low/Medium/High based on age+BMI+health
+   - Rationale: Clinically actionable risk tiers
+
+8. Insurance_Gender (Categorical)
+   - Formula: Insurance_Coverage + Gender combination
+   - Rationale: Intersectionality in healthcare access
+
+9. Age_Squared (Numerical)
+   - Formula: Age^2
+   - Rationale: Non-linear risk acceleration
+
+10. Income_per_Age (Numerical)
+    - Formula: Family_Income / (Age + 1)
+    - Rationale: Wealth accumulation proxy
+
+TOTAL FEATURES: 17 (7 original + 10 engineered)

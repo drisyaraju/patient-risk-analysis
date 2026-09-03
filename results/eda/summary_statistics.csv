@@ -1,0 +1,4 @@
+Disease,Total_Patients,Cases,Prevalence_%,Mean_Age_Cases,Mean_Age_Controls,Mean_Income_Cases,Mean_Income_Controls
+Diabetes,27741,3078,11.1,61.6,38.0,57020.0,82058.0
+Hypertension,21882,8132,37.16,61.4,42.1,66442.0,86331.0
+Heart_Disease,21896,2412,11.02,67.0,47.0,52851.0,82148.0

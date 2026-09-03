@@ -1,0 +1,6 @@
+*.dta
+*.zip
+meps_data/*.csv
+meps_data/results/
+__pycache__/
+*.pkl
